@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import backendUrl from "./api";
 
 const NewPost = () => {
 	const navigate = useNavigate();
@@ -24,7 +25,8 @@ const NewPost = () => {
 
 		const formData = new FormData(event.target);
 
-		await fetch(`http://localhost:3001/posts`, {
+		let url = backendUrl();	
+		await fetch(url + "/posts", {
 			method: "POST",
 			body: formData,
 		});

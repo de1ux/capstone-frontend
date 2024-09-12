@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import getIndividualPost from "./lib/getIndividualPost";
+import backendUrl from "./api";
 
 const EditPost = () => {
 	const navigate = useNavigate();
@@ -28,7 +29,8 @@ const EditPost = () => {
 		//submission instead
 		event.preventDefault();
 
-		const res = await fetch(`http://localhost:3001/post`, {
+		let url = backendUrl();		
+		const res = await fetch(`${url}/post`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

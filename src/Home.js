@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import PostPreview from "./PostPreview";
 import { useEffect, useState } from "react";
 import carPhoto from "./myImages/car.jpg";
+import backendUrl from "./api";
 
 //#5,31 Load the homepage based off the route/path
 const Home = () => {
@@ -19,7 +20,8 @@ const Home = () => {
 	useEffect(() => {
 		const makeAPICall = async () => {
 			setLoading(true);
-			const res = await fetch(`http://localhost:3001/posts`);
+			let url = backendUrl();	
+			const res = await fetch(url + "/posts");
 			const data = await res.json();
 
 			console.log(data.posts);

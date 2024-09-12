@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
+import backendUrl from "./api";
 
 const Login = () => {
 	const [username, setUsername] = useState("");
@@ -12,7 +13,8 @@ const Login = () => {
 		console.log("login form submitted");
 		console.log(username, password);
 
-		const res = await fetch(`http://localhost:3001/login`, {
+		let url = backendUrl();	
+		const res = await fetch(url + "/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

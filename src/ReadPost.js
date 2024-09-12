@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import getIndividualPost from "./lib/getIndividualPost";
 import { Buffer } from "buffer";
+import backendUrl from "./api";
 
 const ReadPost = () => {
 	// R1: Extract timestamp from URL path using react router hook
@@ -26,7 +27,8 @@ const ReadPost = () => {
 
 	const deletePost = async () => {
 		if (window.confirm("Are you sure you want to delete this post?")) {
-			await fetch(`http://localhost:3001/post/${id}`, {
+			let url = backendUrl();	
+			await fetch(url + "/post/${id}", {
 				method: "DELETE",
 			});
 			navigate("/");
@@ -60,7 +62,7 @@ const ReadPost = () => {
 						style={{ maxWidth: "100%" }}
 					/>
 					<a
-						href={`http://localhost:3001/postImage/${id}`}
+						href={`${backendUrl()}/postImage/${id}`}
 						target="_blank"
 					>
 						Download file
